@@ -48,12 +48,6 @@ jobs:
     ##########################
     #  Deploy K8S to Okteto  #
     ##########################
-    #- name: Deploy to Cluster
-    #  uses: steebchen/kubectl@v2.0.0
-    #  env:
-    #    KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-    #  with:
-    #    args: '"set image --record deployment/flaskapp-deployment flaskapp=marianrap/sip-okteto-python:${{ github.sha }}"'
     
     - name: Verify functioning
       uses: Consensys/kubernetes-action@master
@@ -74,20 +68,4 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        args: rollout status deployment/flaskapp-deployment
-    #- name: Verify Deployment
-    #  uses: steebchen/kubectl@v2.0.0
-    #  env:
-    #    KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-    #    KUBECTL_VERSION: "1.15"
-    #  with:
-    #    args: '"rollout status deployment/nginx-deployment"'
-
-    
-    ##########################
-    #      DAST Analisys     #
-    ##########################
-    #- name: ZAP Scan
-    #  uses: zaproxy/action-baseline@v0.4.0
-    #  with:
-    #    target: 'https://flaskapp-deployment-safernandez666.cloud.okteto.net/'
+        args: rollout status deployment/flaskapp-deployment   

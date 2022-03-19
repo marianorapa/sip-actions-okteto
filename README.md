@@ -1,47 +1,8 @@
 # K8S on Okteto with GitHub Actions
 
-Create a completely free CI \ CD Pipeline. To orchestrate we will use GitHub Actions and [Okteto](okteto.com) as Infrastructure. Build the docker image, publish on Dockerhub and deploy on Kubernetes.
-
-## Configuration 
-
-```bash
-cat okteto-kube.config | base64
-```
-Complete the Secret's Tab on GitHub with Dockerhub Username & Passowrd and Kube Config. You must download the configuration file.
-
-## Secret's on GitHub
-
-<p align="center">
-<img src="screenshots/Okteto.jpg" width="600" >
-</p>
-
-## Pipeline 
-
-<p align="center">
-<img src="screenshots/Actions.jpg" width="600" >
-</p>
-
-## Important
-
-It is important that we generate the first deployment manually, with this command, so that GitHub Actions do not fail.
-
-```bash
-export KUBECONFIG=$HOME/Downloads/okteto-kube.config:${KUBECONFIG:-$HOME/.kube/config}
-
-kubectl apply -f ./deployment/deployment.yaml
-```
-
-## Checking the Cluster
-
-The first command I retrieve the pods from the deployment. Then I make the queries, via curl, to the EndPoint of the Cluster in Okteto to check the balance.
-
-<p align="center">
-<img src="screenshots/Kubectl.jpg" width="600" >
-</p>
-
-
-The Website
-
-<p align="center">
-<img src="screenshots/Website.png" width="600" >
-</p>
+0. Crear cuenta en okteto y repo en github
+1. Configurar secrets en Github > Settings > Actions > Repository Secret
+	1.1. Encodear en base64 el kubeconfig de okteto (descarga de la web) y poner el valor en el secret KUBE_CONFIG_DATA
+    1.2. Secrets DOCKER_USERNAME y DOCKER_PASSWORD con el nombre de usuario de Dockerhub y password, respectivamente.
+2. Cambiar el nombre de la imagen/repo en  deployment/deployment.yaml y en workflows/cicd.yaml
+3. Aplicar deployment a mano la primera vez. Para eso, configurar acceso al cluster de k8s como indica Okteto: desde la web, Settings > Download Config File. Nos descarga el archivo de configuración, y ejecutamos el comando para agregar el contexto.
