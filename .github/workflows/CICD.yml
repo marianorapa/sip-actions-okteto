@@ -65,7 +65,7 @@ jobs:
     ##########################
     #      DAST Analisys     #
     ##########################
-    - name: ZAP Scan
-      uses: zaproxy/action-baseline@v0.4.0
-      with:
-        target: 'https://flaskapp-deployment-safernandez666.cloud.okteto.net/'
+    #- name: ZAP Scan
+    #  uses: zaproxy/action-baseline@v0.4.0
+    #  with:
+    #    target: 'https://flaskapp-deployment-safernandez666.cloud.okteto.net/'
