@@ -64,18 +64,18 @@ jobs:
     #    args: '"set image --record deployment/flaskapp-deployment flaskapp=marianrap/sip-okteto-python:${{ github.sha }}"'
     
     - name: Deploy to Cluster 2
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: '"set image --record deployment/flaskapp-deployment flaskapp=marianrap/sip-okteto-python:${{ github.sha }}"'
+      uses: Consensys/kubernetes-action@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      with:
+        args: '"set image --record deployment/flaskapp-deployment flaskapp=marianrap/sip-okteto-python:${{ github.sha }}"'
      
-     - name: Verify deployment 2
-        uses: Consensys/kubernetes-action@master
-        env:
-          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: '"rollout status deployment/flaskapp-deployment"'
+    - name: Verify deployment 2
+      uses: Consensys/kubernetes-action@master
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      with:
+        args: '"rollout status deployment/flaskapp-deployment"'
     #- name: Verify Deployment
     #  uses: steebchen/kubectl@v2.0.0
     #  env:
