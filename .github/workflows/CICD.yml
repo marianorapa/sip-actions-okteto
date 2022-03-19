@@ -53,7 +53,7 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        args: set image --record deployment/flaskapp-deployment flaskapp=marianrap/sip-okteto-python:${{ github.sha }}
+        args: '"set image --record deployment/flaskapp-deployment flaskapp=marianrap/sip-okteto-python:${{ github.sha }}"'
     
     - name: Verify Deployment
       uses: steebchen/kubectl@v2.0.0
